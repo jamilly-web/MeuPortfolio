@@ -23,11 +23,19 @@ export default function Feedback() {
   const handleSend = async () => {
     if (!name.trim() || !message.trim()) return;
     setSubmitting(true);
-    await createRecord('Feedback', { name, message });
-    setName('');
-    setMessage('');
-    setSubmitting(false);
-    loadFeedbacks();
+    
+    try {
+      // Enviando o campo 'name' e mapeando também para 'userName' para garantir compatibilidade com a tabela
+      await createRecord('Feedback', { name, userName: name, message });
+      
+      setName('');
+      setMessage('');
+      await loadFeedbacks();
+    } catch (error) {
+      console.error('Erro ao enviar recado:', error);
+    } finally {
+      setSubmitting(false); // Destrava o botão independentemente de sucesso ou erro
+    }
   };
 
   if (loading) {
@@ -67,11 +75,11 @@ export default function Feedback() {
       
       <FlatList
         data={data}
-        keyExtractor={(item) => item.objectId}
+        keyExtractor={(item) => item.objectId || Math.random().toString()}
         renderItem={({ item }) => (
           <Card
-            title={item.name}
-            description={item.message}
+            title={item.userName || item.name || item.author || 'Anónimo'}
+            description={item.message || item.text || item.content}
           />
         )}
         contentContainerStyle={styles.list}

@@ -19,16 +19,17 @@ export const fetchClassData = async (className) => {
   }
 };
 
-export const createFeedback = async (userName, message, rating) => {
+// Adicione esta função para que o createRecord fique disponível para o feedback.js
+export const createRecord = async (className, data) => {
   try {
-    const response = await fetch(`${BASE_URL}/Feedback`, {
+    const response = await fetch(`${BASE_URL}/${className}`, {
       method: 'POST',
       headers,
-      body: JSON.stringify({ userName, message, rating: Number(rating) }),
+      body: JSON.stringify(data),
     });
     return await response.json();
   } catch (error) {
-    console.error('Erro ao enviar feedback:', error);
+    console.error(`Erro ao criar registo em ${className}:`, error);
     throw error;
   }
 };
