@@ -1,0 +1,51 @@
+{
+  "expo": {
+    "name": "Meu Portfólio",
+    "slug": "meu-portfolio",
+    "owner": "jamilly01s-team",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0F172A"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#0F172A"
+      },
+      "package": "com.seuusuario.meuportfolio"
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-router"
+    ],
+    "scheme": "meuportfolio",
+    "extra": {
+      "eas": {
+        "projectId": "e4b5ab8b-bc8f-441c-93e1-b15e1ab8cadc"
+      },
+      "router": {
+        "asyncRoutes": {
+          "web": true
+        }
+      }
+    },
+    "updates": {
+      "url": "https://u.expo.dev/e4b5ab8b-bc8f-441c-93e1-b15e1ab8cadc"
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    }
+  }
+}
